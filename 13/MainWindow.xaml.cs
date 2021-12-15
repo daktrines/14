@@ -15,7 +15,9 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using LibMas;
+using Microsoft.Extensions.Options;
 using Масивы;
+using static _13.Settings;
 
 namespace _13
 {
@@ -186,6 +188,21 @@ namespace _13
         {
             MessageBoxResult result = MessageBox.Show("Вы желаете выйти из программы?", "Выход из программы", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.No) e.Cancel = true;
+        }
+
+      
+        private void Настройки_Click(object sender, RoutedEventArgs e)
+        {
+            data1.Strok = Convert.ToInt32(kolStrok.Text);
+            data1.Stolbcov  = Convert.ToInt32(kolStolbcov.Text);
+
+            Settings sett = new Settings();
+            sett.Owner = this;
+            sett.ShowDialog();
+
+            kolStrok.Text = data1.Strok.ToString();
+            kolStolbcov.Text = data1.Stolbcov.ToString();
+
         }
     }
 }

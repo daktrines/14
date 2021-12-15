@@ -57,6 +57,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="О программе" Click="Инфо_Click" />
+            <MenuItem Header="Настройки" Click="Настройки_Click" />
         </Menu>
         <ToolBar Height="35" Grid.Row="1" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
             <Button  ToolTip="Открыть таблицу" Click="Openmatr_Click" Width="50">
