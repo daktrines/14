@@ -193,9 +193,7 @@ namespace _13
       
         private void Настройки_Click(object sender, RoutedEventArgs e)
         {
-            data1.Strok = Convert.ToInt32(kolStrok.Text);
-            data1.Stolbcov  = Convert.ToInt32(kolStolbcov.Text);
-
+            
             Settings sett = new Settings();
             sett.Owner = this;
             sett.ShowDialog();

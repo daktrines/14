@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.IO;
 
 namespace _13
 {
@@ -28,11 +29,17 @@ namespace _13
         {
             public static int Strok;
             public static int Stolbcov;
+          
         }
+        public int Row1 { get; set; }
+        public int Column1 { get; set; }
 
         private void Сохранить_Click(object sender, RoutedEventArgs e)
         {
-
+            StreamWriter writer = new StreamWriter("config.ini");
+            writer.WriteLine(Row1);
+            writer.WriteLine(Column1);
+            writer.Close();
         }
 
         private void Вых_Click(object sender, RoutedEventArgs e)
@@ -42,7 +49,8 @@ namespace _13
 
         private void Setting_Activated(object sender, EventArgs e)
         {
-
+            strok.Focus();
+          
         }
         
         private void Ввод_Click(object sender, RoutedEventArgs e)
