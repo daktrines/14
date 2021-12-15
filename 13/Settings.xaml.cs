@@ -20,9 +20,13 @@ namespace _13
     /// </summary>
     public partial class Settings : Window
     {
-        public Settings()
+        public Settings(int row = 0, int column = 0)
         {
             InitializeComponent();
+            Row1 = row;
+            Column1 = column;
+            strok.Text = row.ToString();
+            stolbcov.Text = column.ToString();
         }
 
         public static class data1
@@ -34,20 +38,6 @@ namespace _13
         public int Row1 { get; set; }
         public int Column1 { get; set; }
 
-        private void Сохранить_Click(object sender, RoutedEventArgs e)
-        {
-            StreamWriter writer = new StreamWriter("config.ini");
-            writer.WriteLine(Row1);
-            writer.WriteLine(Column1);
-            writer.Close();
-        }
-
-        public Settings (int row, int column)
-        {
-            Row1 = row;
-            Column1 = column;
-        }
-
         private void Вых_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -58,7 +48,7 @@ namespace _13
             strok.Focus();
         }
         
-        private void Ввод_Click(object sender, RoutedEventArgs e)
+        private void Сохранить_Click(object sender, RoutedEventArgs e)
         {
             int value;
             if (Int32.TryParse(strok.Text, out value))
@@ -77,7 +67,10 @@ namespace _13
                 stolbcov.Focus();
                 return;
             }
-            Close();
+            StreamWriter writer = new StreamWriter("config.ini");
+            Row1 = Convert.ToInt32(strok.Text);
+            Column1 = Convert.ToInt32(stolbcov.Text);
+            writer.Close();
         }
     }
 }

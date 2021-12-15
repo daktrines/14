@@ -55,14 +55,23 @@ namespace _13
             _timer.Tick += Timer_Tick;
             _timer.Interval = new TimeSpan(0, 0, 0, 1, 0);
             _timer.IsEnabled = true;
+
             Password pas = new Password();
             pas.Owner = this;
             pas.ShowDialog();
 
-            using (StreamReader Open = new StreamReader("config.ini"))
+            try
             {
-                kolStrok.Text  = Open.ReadLine();
-                kolStolbcov.Text = Open.ReadLine();
+                using (StreamReader Open = new StreamReader("config.ini"))
+                {
+                    kolStrok.Text  = Open.ReadLine();
+                    kolStolbcov.Text = Open.ReadLine();
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Неверные данные!", "Ошибка", MessageBoxButton.OK,
+                  MessageBoxImage.Error);
             }
         }
 
