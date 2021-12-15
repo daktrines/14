@@ -42,15 +42,20 @@ namespace _13
             writer.Close();
         }
 
+        public Settings (int row, int column)
+        {
+            Row1 = row;
+            Column1 = column;
+        }
+
         private void Вых_Click(object sender, RoutedEventArgs e)
         {
-            Owner.Close();
+            Close();
         }
 
         private void Setting_Activated(object sender, EventArgs e)
         {
             strok.Focus();
-          
         }
         
         private void Ввод_Click(object sender, RoutedEventArgs e)

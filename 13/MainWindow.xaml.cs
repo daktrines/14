@@ -18,6 +18,8 @@ using LibMas;
 using Microsoft.Extensions.Options;
 using Масивы;
 using static _13.Settings;
+using System.IO;
+
 
 namespace _13
 {
@@ -56,6 +58,12 @@ namespace _13
             Password pas = new Password();
             pas.Owner = this;
             pas.ShowDialog();
+
+            using (StreamReader Open = new StreamReader("config.ini"))
+            {
+                kolStrok.Text  = Open.ReadLine();
+                kolStolbcov.Text = Open.ReadLine();
+            }
         }
 
         //Создаем вручную событие таймера
@@ -193,14 +201,22 @@ namespace _13
       
         private void Настройки_Click(object sender, RoutedEventArgs e)
         {
-            
-            Settings sett = new Settings();
-            sett.Owner = this;
+
+            Settings sett;
+            if (matr == null) sett = new Settings();
+            else sett = new Settings(matr.GetLength(0), matr.GetLength(1));
             sett.ShowDialog();
 
             kolStrok.Text = data1.Strok.ToString();
             kolStolbcov.Text = data1.Stolbcov.ToString();
+            using (StreamWriter Save = new StreamWriter("config.ini"))
+            {
+                Save.WriteLine(sett.Row1);
+                Save.WriteLine(sett.Column1);
+            }
 
         }
     }
 }
+
+
