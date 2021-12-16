@@ -57,7 +57,7 @@ namespace _13
             _timer.IsEnabled = true;
 
             Password pas = new Password();
-            pas.Owner = this;
+            pas.Owner = this;//Получение ссылки на родителя
             pas.ShowDialog();
 
             try
@@ -208,7 +208,7 @@ namespace _13
         private void Windows_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Вы желаете выйти из программы?", "Выход из программы", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result == MessageBoxResult.No) e.Cancel = true;
+            if (result == MessageBoxResult.No) e.Cancel = true;//Если нет, то мы не выходим из программы
         }
 
       //Кнопка настройки 
@@ -216,18 +216,20 @@ namespace _13
         {
             //Открываем окно настройки
             Settings sett = new Settings();
-            sett.Owner = this; 
-            sett.ShowDialog();
+            sett.Owner = this; //Получение ссылки на родителя
+            sett.ShowDialog();//Открываем диалоговое окно
             //берем полученные значения и заносим их  в соотв. элементы
             kolStrok.Text = data1.Strok.ToString();
             kolStolbcov.Text = data1.Stolbcov.ToString();
-            Заполнить_Click(sender, e);
             
             //Сохраняем файл
             StreamWriter Save = new StreamWriter("config.ini");
             Save.WriteLine(data1.Strok);
             Save.WriteLine(data1.Stolbcov);
             Save.Close();
+
+            //Используем событие заполнения матрицы
+            Заполнить_Click(sender, e);
         }
     }
 }

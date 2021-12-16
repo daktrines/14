@@ -27,6 +27,7 @@ namespace _13
 
         private void Windows_Activated(object sender, EventArgs e)
         {
+            //ставит фокус на текстбокс при активации окна пароля
             PasswordB.Focus();
         }
 

@@ -88,7 +88,7 @@
                 <Label Content="- Количество строк" Margin="82,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Foreground="Black"></Label>
                 <TextBox  x:Name="kolStolbcov" Text="" MaxLines="1" Margin="10,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" TextChanged="kolStolbcov_TextChanged" MaxLength="2" />
                 <Label Content="- Количество столбцов" Margin="82,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Foreground="Black"></Label>
-                <Button Content="Заполнить" Click="Заполнить_Click" ToolTip="Создать и заполнить матрицу" Margin="10,72,10,0" Height="27" VerticalAlignment="Top" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
+                <Button Content="Заполнить"  IsDefault="True" Click="Заполнить_Click" ToolTip="Создать и заполнить матрицу" Margin="10,72,10,0" Height="27" VerticalAlignment="Top" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
             </Grid>
         </GroupBox>
         <GroupBox  Header="Результат" Margin="260,0,0,3" Height="131" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="158" Grid.Row="3">

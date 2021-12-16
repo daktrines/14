@@ -5,15 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:_13"
         mc:Ignorable="d"
-        Title="Настройки" Height="180.459" Width="232.81" WindowStartupLocation="CenterOwner"  Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" ResizeMode="NoResize" Loaded="Setting_Loaded">
+        Title="Настройки" Height="180.459" Width="232.81" WindowStartupLocation="CenterOwner"  Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" ResizeMode="NoResize">
     <Grid>
         <TextBox x:Name="strok" Text="" MaxLines="1" Margin="10,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48" MaxLength="2" />
         <Label Content="- Количество строк" Margin="62,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="144" Foreground="Black"/>
         <TextBox  x:Name="stolbcov" Text="" MaxLines="1" Margin="10,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48"  MaxLength="2" />
         <Label Content="- Количество столбцов" Margin="62,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="144" Foreground="Black"/>
 
-        <Button x:Name="Сохранить" Content="Сохранить" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="196" Height="27" Background="#FF4265A2" BorderBrush="Black" Foreground="White" Click="Сохранить_Click"/>
-        <Button x:Name="Вых" Content="Выход" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="196" Height="26" Background="#FF4265A2" Foreground="White" Click="Вых_Click" BorderBrush="Black"/>
+        <Button x:Name="Сохранить" IsDefault="True" Content="Сохранить" HorizontalAlignment="Left" Margin="10,76,0,0" VerticalAlignment="Top" Width="196" Height="27" Background="#FF4265A2" BorderBrush="Black" Foreground="White" Click="Сохранить_Click"/>
+        <Button x:Name="Вых" IsCancel="True" Content="Выход" HorizontalAlignment="Left" Margin="10,108,0,0" VerticalAlignment="Top" Width="196" Height="26" Background="#FF4265A2" Foreground="White" Click="Вых_Click" BorderBrush="Black"/>
        
 
     </Grid>
