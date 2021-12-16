@@ -62,11 +62,14 @@ namespace _13
 
             try
             {
-                using (StreamReader Open = new StreamReader("config.ini"))
-                {
-                    kolStrok.Text  = Open.ReadLine();
-                    kolStolbcov.Text = Open.ReadLine();
-                }
+                //Открываем файл, который сохранили
+                StreamReader Open = new StreamReader("config.ini");
+                data1.Strok   = Convert.ToInt32(Open.ReadLine());
+                data1.Stolbcov = Convert.ToInt32(Open.ReadLine());
+                Open.Close();
+
+                kolStrok.Text = data1.Strok.ToString();
+                kolStolbcov.Text = data1.Stolbcov.ToString();
             }
             catch
             {
@@ -201,29 +204,30 @@ namespace _13
             s.Text = $"Строка {indexRow + 1}" + " / " + $"Столбец {indexColumn + 1}";
         }
 
+        //Закрытие программы
         private void Windows_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MessageBoxResult result = MessageBox.Show("Вы желаете выйти из программы?", "Выход из программы", MessageBoxButton.YesNo, MessageBoxImage.Question);
             if (result == MessageBoxResult.No) e.Cancel = true;
         }
 
-      
+      //Кнопка настройки 
         private void Настройки_Click(object sender, RoutedEventArgs e)
         {
-
-            Settings sett;
-            if (matr == null) sett = new Settings();
-            else sett = new Settings(matr.GetLength(0), matr.GetLength(1));
+            //Открываем окно настройки
+            Settings sett = new Settings();
+            sett.Owner = this; 
             sett.ShowDialog();
-
+            //берем полученные значения и заносим их  в соотв. элементы
             kolStrok.Text = data1.Strok.ToString();
             kolStolbcov.Text = data1.Stolbcov.ToString();
-            using (StreamWriter Save = new StreamWriter("config.ini"))
-            {
-                Save.WriteLine(sett.Row1);
-                Save.WriteLine(sett.Column1);
-            }
-
+            Заполнить_Click(sender, e);
+            
+            //Сохраняем файл
+            StreamWriter Save = new StreamWriter("config.ini");
+            Save.WriteLine(data1.Strok);
+            Save.WriteLine(data1.Stolbcov);
+            Save.Close();
         }
     }
 }

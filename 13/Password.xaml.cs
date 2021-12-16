@@ -42,6 +42,7 @@ namespace _13
 
         private void Отмена_Click(object sender, RoutedEventArgs e)
         {
+            //Закрываем главную форму
             Owner.Close();
         }
     }
