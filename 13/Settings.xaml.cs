@@ -31,12 +31,7 @@ namespace _13
             public static int Stolbcov;
         }
 
-        //Выход из окна
-        private void Вых_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
+      
         //Кнопка сохранить
         private void Сохранить_Click(object sender, RoutedEventArgs e)
         {
@@ -57,6 +52,13 @@ namespace _13
                 stolbcov.Focus();
                 return;
             }
+            Close();
         }
+        private void Setting_Loaded(object sender, RoutedEventArgs e)
+        {
+            strok.Text = data1.Strok.ToString();
+            stolbcov.Text = data1.Stolbcov.ToString();
+        }
+
     }
 }
