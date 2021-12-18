@@ -25,10 +25,10 @@ namespace _13
             InitializeComponent();
         }
 
-        public static class data1
+        public static class Data1
         {
-            public static int Strok;
-            public static int Stolbcov;
+            public static int _strok;
+            public static int _stolbcov;
         }
 
       
@@ -37,7 +37,7 @@ namespace _13
         {
             int value;
             if (Int32.TryParse(Strok.Text, out value))
-                data1.Strok = value;
+                Data1._strok = value;
             else
             {
                 MessageBox.Show("Ошибка в количестве строк");
@@ -45,7 +45,7 @@ namespace _13
                 return;
             }
             if (Int32.TryParse(Stolbcov.Text, out value))
-                data1.Stolbcov = value;
+                Data1._stolbcov = value;
             else
             {
                 MessageBox.Show("Ошибка в количестве столбцов");
@@ -56,8 +56,8 @@ namespace _13
         }
         private void SettingsWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            Strok.Text = data1.Strok.ToString();
-            Stolbcov.Text = data1.Stolbcov.ToString();
+            Strok.Text = Data1._strok.ToString();
+            Stolbcov.Text = Data1._stolbcov.ToString();
         }
 
     }

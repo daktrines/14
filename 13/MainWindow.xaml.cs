@@ -64,12 +64,12 @@ namespace _13
             {
                 //Открываем файл, который сохранили
                 StreamReader Open = new StreamReader("config.ini");
-                data1.Strok   = Convert.ToInt32(Open.ReadLine());
-                data1.Stolbcov = Convert.ToInt32(Open.ReadLine());
+                Data1._strok   = Convert.ToInt32(Open.ReadLine());
+                Data1._stolbcov = Convert.ToInt32(Open.ReadLine());
                 Open.Close();
 
-                KolStrok.Text = data1.Strok.ToString();
-                KolStolbcov.Text = data1.Stolbcov.ToString();
+                KolStrok.Text = Data1._strok.ToString();
+                KolStolbcov.Text = Data1._stolbcov.ToString();
             }
             catch
             {
@@ -98,7 +98,6 @@ namespace _13
             int rowIndex = e.Row.GetIndex();
 
             //Заносим  отредоктированое значение в соответствующую ячейку матрицы
-
             if (Int32.TryParse(((TextBox)e.EditingElement).Text, out matr[rowIndex, columnIndex]))
             { }
             else MessageBox.Show("Неверные данные!", "Ошибка", MessageBoxButton.OK,
@@ -109,8 +108,10 @@ namespace _13
         private void Fill_Click(object sender, RoutedEventArgs e)
         {
             //Проверка поля на корректность введенных данных
-            if (Int32.TryParse(KolStrok.Text, out int row) && Int32.TryParse(KolStolbcov.Text, out int column) && row > 0 && column > 0)
+            try
             {
+                int row = Convert.ToInt32(KolStrok.Text);
+                int column = Convert.ToInt32(KolStolbcov.Text);
                 //Определяем размер матрицы
                 MatrixSize.Text = $"Matrix: {KolStrok.Text}" + "*" + $"{KolStolbcov.Text}";
                
@@ -120,16 +121,20 @@ namespace _13
                 MatrData.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
 
                 //очищаем результат
-              Rez1.Clear();
+                Rez1.Clear();
             }
-            else MessageBox.Show("Вы не создали матрицу, укажите размеры матрицы и нажмите кнопку Заполнить", "Ошибка", MessageBoxButton.OK,
-                    MessageBoxImage.Error);
+            catch
+            {
+                MessageBox.Show("Неверные данные!", "Ошибка", MessageBoxButton.OK,
+                  MessageBoxImage.Error);
+                KolStrok.Focus();
+            }
         }
 
         //Расчет задания для матрицы
         private void Find_Click(object sender, RoutedEventArgs e)
         {
-             Rez1.Clear();
+            Rez1.Clear();
 
             if (matr == null || matr.Length == 0)
             {
@@ -138,12 +143,22 @@ namespace _13
             }
             else
             {
-                int row = Convert.ToInt32(KolStrok.Text);
-                int column = Convert.ToInt32(KolStolbcov.Text);
-                int kol = Rez.Рассчитать(row, column, matr);
-                Rez1.Text = Convert.ToString(kol);
+                try
+                {
+                    int row = Convert.ToInt32(KolStrok.Text);
+                    int column = Convert.ToInt32(KolStolbcov.Text);
+                    int kol = Rez.Рассчитать(row, column, matr);
+                    Rez1.Text = Convert.ToString(kol);
+                }
+                catch
+                {
+                    MessageBox.Show("Неверные данные!", "Ошибка", MessageBoxButton.OK,
+                      MessageBoxImage.Error);
+                    KolStrok.Focus();
+                }
             }
         }
+        
 
         //Очищение матрицы
         private void Reset_Click(object sender, RoutedEventArgs e)
@@ -214,13 +229,13 @@ namespace _13
             sett.Owner = this; //Получение ссылки на родителя
             sett.ShowDialog();//Открываем диалоговое окно
             //берем полученные значения и заносим их  в соотв. элементы
-            KolStrok.Text = data1.Strok.ToString();
-            KolStolbcov.Text = data1.Stolbcov.ToString();
+            KolStrok.Text = Data1._strok.ToString();
+            KolStolbcov.Text = Data1._stolbcov.ToString();
             
             //Сохраняем файл
             StreamWriter Save = new StreamWriter("config.ini");
-            Save.WriteLine(data1.Strok);
-            Save.WriteLine(data1.Stolbcov);
+            Save.WriteLine(Data1._strok);
+            Save.WriteLine(Data1._stolbcov);
             Save.Close();
 
             //Используем событие заполнения матрицы
