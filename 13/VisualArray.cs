@@ -24,7 +24,7 @@ namespace Масивы
             var res = new DataTable();
             for (int i = 0; i < arr.Length; i++)
             {
-                res.Columns.Add("стл " + (i + 1), typeof(T));
+                res.Columns.Add("Cтл " + (i + 1), typeof(T));
             }
             var row = res.NewRow();
             for (int i = 0; i < arr.Length; i++)
@@ -40,7 +40,7 @@ namespace Масивы
             var res = new DataTable();
             for (int i = 0; i < matrix.GetLength(1); i++)
             {
-                res.Columns.Add("стл " + (i + 1), typeof(T));
+                res.Columns.Add("Cтл " + (i + 1), typeof(T));
             }
 
             for (int i = 0; i < matrix.GetLength(0); i++)

@@ -12,10 +12,9 @@ namespace LibMas
     {
      
         //Заполнение матрицы
-        public static void Заполнить( int row, int column, out int[,] matr)
+        public static void Fill( int row, int column, out int[,] matr)
         {
             //задаем массиву размерность
-            
             matr = new int[row, column];
 
             //Заполняем матрицу случайными числами

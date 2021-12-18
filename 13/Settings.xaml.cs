@@ -33,31 +33,31 @@ namespace _13
 
       
         //Кнопка сохранить
-        private void Сохранить_Click(object sender, RoutedEventArgs e)
+        private void SaveSettings_Click(object sender, RoutedEventArgs e)
         {
             int value;
-            if (Int32.TryParse(strok.Text, out value))
+            if (Int32.TryParse(Strok.Text, out value))
                 data1.Strok = value;
             else
             {
                 MessageBox.Show("Ошибка в количестве строк");
-                strok.Focus();
+                Strok.Focus();
                 return;
             }
-            if (Int32.TryParse(stolbcov.Text, out value))
+            if (Int32.TryParse(Stolbcov.Text, out value))
                 data1.Stolbcov = value;
             else
             {
                 MessageBox.Show("Ошибка в количестве столбцов");
-                stolbcov.Focus();
+                Stolbcov.Focus();
                 return;
             }
             Close();
         }
-        private void Setting_Loaded(object sender, RoutedEventArgs e)
+        private void SettingsWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            strok.Text = data1.Strok.ToString();
-            stolbcov.Text = data1.Stolbcov.ToString();
+            Strok.Text = data1.Strok.ToString();
+            Stolbcov.Text = data1.Stolbcov.ToString();
         }
 
     }

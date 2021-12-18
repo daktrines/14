@@ -21,93 +21,93 @@
         </Grid.RowDefinitions>
         <Menu VerticalAlignment="Top"  Grid.Row="0" Margin="-1,0,1,0" Height="18" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" Foreground="Black" >
             <MenuItem Header="Файл">
-                <MenuItem  Header="Открыть" Click="Savematr_Click">
+                <MenuItem  Header="Открыть" Click="OpenMatr_Click"  >
                     <MenuItem.Icon>
                         <Image Source="image/icons8-открыть-папку-144.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem  Header="Сохранить" Click="Openmatr_Click" >
+                <MenuItem  Header="Сохранить" Click="SaveMatr_Click" >
                     <MenuItem.Icon>
                         <Image Source="image/icons8-сохранить-96.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem  Header="Выход" Click="Выход_Click" >
+                <MenuItem  Header="Выход" Click="Exit_Click" >
                     <MenuItem.Icon>
                         <Image Source="image/icons8-перезапуск-32.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
             <MenuItem   Header="Команды">
-                <MenuItem  Header="Заполнить" Click="Заполнить_Click" >
+                <MenuItem  Header="Заполнить" Click="Fill_Click" >
                     <MenuItem.Icon>
                         <Image Source="image/icons8-шариковая-ручка-90.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem   Header="Вычислить" Click="Вычислить_Click">
+                <MenuItem   Header="Найти" Click="Find_Click">
                     <MenuItem.Icon>
                         <Image Source="image/icons8-где-100.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator ></Separator>
-                <MenuItem  Header="Сброс"  Click="Сброс_Click">
+                <MenuItem  Header="Сброс"  Click="Reset_Click">
                     <MenuItem.Icon>
                         <Image Source="image/icons8-перезапуск-32.png" />
                     </MenuItem.Icon>
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="О программе" Click="Инфо_Click" />
-            <MenuItem Header="Настройки" Click="Настройки_Click" />
+            <MenuItem Header="О программе" Click="Information_Click" />
+            <MenuItem Header="Настройки" Click="Settings_Click" />
         </Menu>
         <ToolBar Height="35" Grid.Row="1" VerticalAlignment="Top" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}">
-            <Button  ToolTip="Открыть таблицу" Click="Openmatr_Click" Width="50">
+            <Button  ToolTip="Открыть таблицу" Click="OpenMatr_Click" Width="50">
                 <Image Source="image/icons8-открыть-папку-96.png"/>
             </Button>
             <Separator Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></Separator>
-            <Button  ToolTip="Сохранить таблицу" Click="Savematr_Click" Width="50">
+            <Button  ToolTip="Сохранить таблицу" Click="SaveMatr_Click" Width="50">
                 <Image Source="image/icons8-сохранить-все-96.png" Width="27"/>
             </Button>
             <Separator Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></Separator>
-            <Button  ToolTip="Сброс" Click="Сброс_Click" Width="50">
+            <Button  ToolTip="Сброс" Click="Reset_Click" Width="50">
                 <Image Source="image/icons8-перезапуск-32.png"  />
             </Button>
             <Separator Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></Separator>
-            <Button  ToolTip="Закрыть программу" Click="Выход_Click" Width="50">
+            <Button  ToolTip="Закрыть программу" Click="Exit_Click" Width="50">
                 <Image Source="image/icons8-кнопка-с-крестиком-96.png" />
             </Button>
         </ToolBar>
         <GroupBox Header="Исходные данные" Grid.Row="2" Margin="0,0,0,151" Grid.RowSpan="2">
             <Grid>
-                <DataGrid x:Name="matrData" CellEditEnding="МатрицаDataGrid_CellEditEnding" CanUserAddRows="False"  Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" MouseDoubleClick="matrData_MouseDoubleClick"/>
+                <DataGrid x:Name="MatrData"  CanUserAddRows="False"  Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}" MouseDoubleClick="MatrData_MouseDoubleClick" CellEditEnding="MatrData_CellEditEnding"/>
             </Grid>
         </GroupBox>
 
         <GroupBox  Header="Настройка матрицы" Margin="10,0,0,3" HorizontalAlignment="Left" Width="245" Height="131" VerticalAlignment="Bottom" Grid.Row="3">
             <Grid>
-                <TextBox x:Name="kolStrok" Text="" MaxLines="1" Margin="10,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" TextChanged="kolStrok_TextChanged" MaxLength="2" />
+                <TextBox x:Name="KolStrok" Text="" MaxLines="1" Margin="10,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" TextChanged="KolOfRowsAndColumns_TextChanged" MaxLength="2" />
                 <Label Content="- Количество строк" Margin="82,10,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Foreground="Black"></Label>
-                <TextBox  x:Name="kolStolbcov" Text="" MaxLines="1" Margin="10,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" TextChanged="kolStolbcov_TextChanged" MaxLength="2" />
+                <TextBox  x:Name="KolStolbcov" Text="" MaxLines="1" Margin="10,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="67" TextChanged="KolOfRowsAndColumns_TextChanged" MaxLength="2" />
                 <Label Content="- Количество столбцов" Margin="82,41,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="147" Foreground="Black"></Label>
-                <Button Content="Заполнить"  IsDefault="True" Click="Заполнить_Click" ToolTip="Создать и заполнить матрицу" Margin="10,72,10,0" Height="27" VerticalAlignment="Top" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
+                <Button Content="Заполнить"  IsDefault="True" Click="Fill_Click" ToolTip="Создать и заполнить матрицу" Margin="10,72,10,0" Height="27" VerticalAlignment="Top" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.InactiveCaptionTextBrushKey}}" />
             </Grid>
         </GroupBox>
         <GroupBox  Header="Результат" Margin="260,0,0,3" Height="131" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="158" Grid.Row="3">
             <Grid>
-                <Button Content="Вычислить" ToolTip="Вычислить матрицу" Click="Вычислить_Click" HorizontalAlignment="Left" Width="125" Height="26" VerticalAlignment="Top" Margin="10,56,0,0" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"></Button>
+                <Button Content="Найти" ToolTip="Найти матрицу" Click="Find_Click" HorizontalAlignment="Left" Width="125" Height="26" VerticalAlignment="Top" Margin="10,56,0,0" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"></Button>
                 <TextBox Name="Rez1" ToolTip="Количество столбцов, которые соответствуют условию" IsReadOnly="True" Margin="10,25,0,0" Height="26" VerticalAlignment="Top" HorizontalAlignment="Left" Width="125"/>
             </Grid>
         </GroupBox>
         <GroupBox Header="Информация" HorizontalAlignment="Left" Height="131" VerticalAlignment="Bottom" Width="150"  Grid.Row="3" Margin="422,0,0,3">
             <Grid>
-                <Button Content="Сброс " ToolTip="Сброс"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="118" Height="26" Click="Сброс_Click" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
-                <Button Content="О программе" ToolTip="Информация о программе"  HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="118" Height="26" Click="Инфо_Click" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
-                <Button Content="Выход" ToolTip="Выход из программы"  HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="118" Height="26" Click="Выход_Click" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
+                <Button Content="Сброс " ToolTip="Сброс"  HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="118" Height="26" Click="Reset_Click" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
+                <Button Content="О программе" ToolTip="Информация о программе"  HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="118" Height="26" Click="Information_Click" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
+                <Button Content="Выход" ToolTip="Выход из программы"  HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="118" Height="26" Click="Exit_Click" Background="#FF4265A2" Foreground="White" BorderBrush="{DynamicResource {x:Static SystemColors.ActiveCaptionTextBrushKey}}"/>
             </Grid>
         </GroupBox>
         <StatusBar  Grid.Row="4" Margin="0,2,1,0" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" >
-            <TextBlock x:Name="v" ToolTip="Размер таблицы"  Height="18" TextWrapping="Wrap"  Width="120" Background="#FF99B4D1" TextAlignment="Center" />
+            <TextBlock x:Name="MatrixSize" ToolTip="Размер таблицы"  Height="18" TextWrapping="Wrap"  Width="120" Background="#FF99B4D1" TextAlignment="Center" />
             <Separator Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></Separator>
-            <TextBlock x:Name="s" ToolTip="Номер строки и номер столбца, выделенной ячейки"  Height="17" TextWrapping="Wrap"  Width="173" Background="#FF99B4D1" TextAlignment="Center" />
+            <TextBlock x:Name="CellNumber" ToolTip="Номер строки и номер столбца, выделенной ячейки"  Height="17" TextWrapping="Wrap"  Width="173" Background="#FF99B4D1" TextAlignment="Center" />
             <Separator Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></Separator>
             <TextBlock x:Name="time" ToolTip="Время"  TextWrapping="Wrap" VerticalAlignment="Top" Width="95" TextAlignment="Center" Height="18" />
             <Separator Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"></Separator>
@@ -116,18 +116,18 @@
         <Separator HorizontalAlignment="Left" Height="40" Margin="-2,138,0,0" Grid.Row="3" VerticalAlignment="Top" Width="592" Grid.RowSpan="2" Background="{DynamicResource {x:Static SystemColors.WindowFrameBrushKey}}"/>
         <Grid.ContextMenu>
             <ContextMenu>
-                <MenuItem  Header="Заполнить" Click="Заполнить_Click" >
+                <MenuItem  Header="Заполнить" Click="Fill_Click" >
                     <MenuItem.Icon>
                         <Image Source="image/icons8-шариковая-ручка-90.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem   Header="Вычислить" Click="Вычислить_Click">
+                <MenuItem   Header="Найти" Click="Find_Click">
                     <MenuItem.Icon>
                         <Image Source="image/icons8-где-100.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator ></Separator>
-                <MenuItem  Header="Сброс"  Click="Сброс_Click">
+                <MenuItem  Header="Сброс"  Click="Reset_Click">
                     <MenuItem.Icon>
                         <Image Source="image/icons8-перезапуск-32.png" />
                     </MenuItem.Icon>

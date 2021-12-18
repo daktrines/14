@@ -35,7 +35,7 @@ namespace _13
         int[,] matr;
         DispatcherTimer _timer;// Описываем таймер
 
-        private void Инфо_Click(object sender, RoutedEventArgs e)
+        private void Information_Click(object sender, RoutedEventArgs e)
         {
             MessageBox.Show("Калион Екатерина " +
                 "\n13 пр" +
@@ -43,7 +43,7 @@ namespace _13
                 "\nНайти количество ее столбцов, элементы которых " +
                 "\nупорядочены по убыванию", "Информация", MessageBoxButton.OK, MessageBoxImage.Question);
         }
-        private void Выход_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
@@ -68,12 +68,12 @@ namespace _13
                 data1.Stolbcov = Convert.ToInt32(Open.ReadLine());
                 Open.Close();
 
-                kolStrok.Text = data1.Strok.ToString();
-                kolStolbcov.Text = data1.Stolbcov.ToString();
+                KolStrok.Text = data1.Strok.ToString();
+                KolStolbcov.Text = data1.Stolbcov.ToString();
             }
             catch
             {
-                MessageBox.Show("Неверные данные!", "Ошибка", MessageBoxButton.OK,
+                MessageBox.Show("Автозаполнение таблицы не было выполнено. Необходимо установить значение в настройках", "Ошибка", MessageBoxButton.OK,
                   MessageBoxImage.Error);
             }
         }
@@ -87,7 +87,7 @@ namespace _13
         }
 
         //Редактирование ячеек
-        private void МатрицаDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
+        private void MatrData_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e)
         {
             //Очищаем textbox с результатом 
             Rez1.Clear();
@@ -106,18 +106,18 @@ namespace _13
         }
 
         //Заполнение матрицы
-        private void Заполнить_Click(object sender, RoutedEventArgs e)
+        private void Fill_Click(object sender, RoutedEventArgs e)
         {
             //Проверка поля на корректность введенных данных
-            if (Int32.TryParse(kolStrok.Text, out int row) && Int32.TryParse(kolStolbcov.Text, out int column) && row > 0 && column > 0)
+            if (Int32.TryParse(KolStrok.Text, out int row) && Int32.TryParse(KolStolbcov.Text, out int column) && row > 0 && column > 0)
             {
                 //Определяем размер матрицы
-                v.Text = $"Matrix: {kolStrok.Text}" + "*" + $"{kolStolbcov.Text}";
+                MatrixSize.Text = $"Matrix: {KolStrok.Text}" + "*" + $"{KolStolbcov.Text}";
                
-                Class1.Заполнить(row, column, out matr);
+                Class1.Fill(row, column, out matr);
 
                 //Выводим матрицу на форму
-                matrData.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
+                MatrData.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
 
                 //очищаем результат
               Rez1.Clear();
@@ -127,7 +127,7 @@ namespace _13
         }
 
         //Расчет задания для матрицы
-        private void Вычислить_Click(object sender, RoutedEventArgs e)
+        private void Find_Click(object sender, RoutedEventArgs e)
         {
              Rez1.Clear();
 
@@ -138,38 +138,38 @@ namespace _13
             }
             else
             {
-                int row = Convert.ToInt32(kolStrok.Text);
-                int column = Convert.ToInt32(kolStolbcov.Text);
+                int row = Convert.ToInt32(KolStrok.Text);
+                int column = Convert.ToInt32(KolStolbcov.Text);
                 int kol = Rez.Рассчитать(row, column, matr);
                 Rez1.Text = Convert.ToString(kol);
             }
         }
 
         //Очищение матрицы
-        private void Сброс_Click(object sender, RoutedEventArgs e)
+        private void Reset_Click(object sender, RoutedEventArgs e)
         {
             //Очищаем остальные текстбоксы
-            kolStrok.Focus();
-            kolStolbcov.Clear();
-            kolStrok.Clear();
+            KolStrok.Focus();
+            KolStolbcov.Clear();
+            KolStrok.Clear();
             Rez1.Clear();
 
             if (matr != null && matr.Length != 0)
             {
-                matrData.ItemsSource = null;
+                MatrData.ItemsSource = null;
             }
             else MessageBox.Show("Вы не создали матрицу, укажите размеры матрицы и нажмите кнопку \"Заполнить" , "Ошибка",  MessageBoxButton.OK,
                     MessageBoxImage.Error);
         }
 
         //Сохранение матрицы
-        private void Savematr_Click(object sender, RoutedEventArgs e)
+        private void SaveMatr_Click(object sender, RoutedEventArgs e)
         {
             Class1.Savematr(matr);
         }
 
         //Открытие матрицы
-        private void Openmatr_Click(object sender, RoutedEventArgs e)
+        private void OpenMatr_Click(object sender, RoutedEventArgs e)
         {
             Class1.Openmatr(out matr);
             for (int i = 0; i < matr.GetLength(0); i++)
@@ -177,31 +177,26 @@ namespace _13
                 for (int j = 0; j < matr.GetLength(1); j++)
                 {
                     //Выводим матрицу на форму
-                    matrData.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
+                    MatrData.ItemsSource = VisualArray.ToDataTable(matr).DefaultView;
                 }
             }
         }
 
         //Когда изменяем текстбокс, очищает остальные текстбоксы
-        private void kolStrok_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            Rez1.Clear();
-        }
-
-        //Когда изменяем текстбокс, очищает остальные текстбоксы
-        private void kolStolbcov_TextChanged(object sender, TextChangedEventArgs e)
+        private void KolOfRowsAndColumns_TextChanged(object sender, TextChangedEventArgs e)
         {
             Rez1.Clear();
         }
        
         //Определяем номер ячейки в матрице
-        private void matrData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void MatrData_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //Определяем номер столбца
-            int indexColumn = matrData.CurrentCell.Column.DisplayIndex;
+            int indexColumn = MatrData.CurrentCell.Column.DisplayIndex;
             //Определяем номер строки
-            int indexRow = matrData.SelectedIndex;
-            s.Text = $"Строка {indexRow + 1}" + " / " + $"Столбец {indexColumn + 1}";
+            int indexRow = MatrData.SelectedIndex;
+
+            CellNumber.Text = $"Строка {indexRow + 1}" + " / " + $"Столбец {indexColumn + 1}";
         }
 
         //Закрытие программы
@@ -212,15 +207,15 @@ namespace _13
         }
 
       //Кнопка настройки 
-        private void Настройки_Click(object sender, RoutedEventArgs e)
+        private void Settings_Click(object sender, RoutedEventArgs e)
         {
             //Открываем окно настройки
             Settings sett = new Settings();
             sett.Owner = this; //Получение ссылки на родителя
             sett.ShowDialog();//Открываем диалоговое окно
             //берем полученные значения и заносим их  в соотв. элементы
-            kolStrok.Text = data1.Strok.ToString();
-            kolStolbcov.Text = data1.Stolbcov.ToString();
+            KolStrok.Text = data1.Strok.ToString();
+            KolStolbcov.Text = data1.Stolbcov.ToString();
             
             //Сохраняем файл
             StreamWriter Save = new StreamWriter("config.ini");
@@ -229,7 +224,7 @@ namespace _13
             Save.Close();
 
             //Используем событие заполнения матрицы
-            Заполнить_Click(sender, e);
+            Fill_Click(sender, e);
         }
     }
 }

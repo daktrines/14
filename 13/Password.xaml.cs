@@ -25,13 +25,13 @@ namespace _13
             InitializeComponent();
         }
 
-        private void Windows_Activated(object sender, EventArgs e)
+        private void PasswordWindow_Activated(object sender, EventArgs e)
         {
             //ставит фокус на текстбокс при активации окна пароля
             PasswordB.Focus();
         }
 
-        private void Войти_Click(object sender, RoutedEventArgs e)
+        private void Enter_Click(object sender, RoutedEventArgs e)
         {
             if (PasswordB.Password == "123") Close();
             else
@@ -41,7 +41,7 @@ namespace _13
             }
         }
 
-        private void Отмена_Click(object sender, RoutedEventArgs e)
+        private void Cancel_Click(object sender, RoutedEventArgs e)
         {
             //Закрываем главную форму
             Owner.Close();
